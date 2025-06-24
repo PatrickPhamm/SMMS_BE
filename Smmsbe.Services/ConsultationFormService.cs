@@ -82,6 +82,7 @@ namespace Smmsbe.Services
                 .Include(x => x.ConsultationSchedule)
                 .ThenInclude(x => x.Student)
                 .Where(x => x.Parent.Students.Any(s => s.StudentId == studentId))
+                .Where(x => x.ConsultationSchedule.StudentId == studentId)
                 .Select(x => new GetConsultationFormByStudentResponse
                 {
                     ConsultationFormId = x.ConsultationFormId,

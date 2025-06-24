@@ -15,14 +15,17 @@ namespace Smmsbe.Services
         private readonly IFormRepository _formRepository;
         private readonly IConsentFormRepository _consentFormRepository;
         private readonly IParentRepository _parentRepository;
+        private readonly IStudentRepository _studentRepository;
 
         public FormService(IFormRepository formRepository
             , IConsentFormRepository consentFormRepository
-            , IParentRepository parentRepository)
+            , IParentRepository parentRepository
+            , IStudentRepository studentRepository)
         {
             _formRepository = formRepository;
             _consentFormRepository = consentFormRepository;
             _parentRepository = parentRepository;
+            _studentRepository = studentRepository;
         }
 
         public async Task<FormResponse> GetById(int id)
