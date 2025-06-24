@@ -1,0 +1,6 @@
+@Smmsbe.WebApi_HostAddress = http://localhost:5273
+
+GET {{Smmsbe.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

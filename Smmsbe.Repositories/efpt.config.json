@@ -1,0 +1,117 @@
+﻿{
+   "CodeGenerationMode": 4,
+   "ContextClassName": "SMMSContext",
+   "ContextNamespace": null,
+   "FilterSchemas": false,
+   "IncludeConnectionString": false,
+   "ModelNamespace": null,
+   "OutputContextPath": null,
+   "OutputPath": "Entities",
+   "PreserveCasingWithRegex": true,
+   "ProjectRootNamespace": "Smmsbe.Repositories",
+   "Schemas": null,
+   "SelectedHandlebarsLanguage": 2,
+   "SelectedToBeGenerated": 0,
+   "T4TemplatePath": null,
+   "Tables": [
+      {
+         "Name": "[dbo].[Blog]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ConsentForm]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ConsultationForm]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ConsultationSchedule]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Form]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[HealthCheckResult]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[HealthCheckSchedule]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[HealthProfile]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Manager]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MedicalEvent]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[MedicalInventory]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Medications]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Nurse]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Parent]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[ParentPrescription]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[Student]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VaccinationResult]",
+         "ObjectType": 0
+      },
+      {
+         "Name": "[dbo].[VaccinationSchedule]",
+         "ObjectType": 0
+      }
+   ],
+   "UiHint": null,
+   "UncountableWords": null,
+   "UseAsyncStoredProcedureCalls": true,
+   "UseBoolPropertiesWithoutDefaultSql": false,
+   "UseDatabaseNames": false,
+   "UseDatabaseNamesForRoutines": true,
+   "UseDateOnlyTimeOnly": true,
+   "UseDbContextSplitting": false,
+   "UseDecimalDataAnnotationForSprocResult": true,
+   "UseFluentApiOnly": true,
+   "UseHandleBars": false,
+   "UseHierarchyId": false,
+   "UseInflector": true,
+   "UseInternalAccessModifiersForSprocsAndFunctions": false,
+   "UseLegacyPluralizer": false,
+   "UseManyToManyEntity": false,
+   "UseNoDefaultConstructor": false,
+   "UseNoNavigations": false,
+   "UseNoObjectFilter": false,
+   "UseNodaTime": false,
+   "UseNullableReferences": false,
+   "UsePrefixNavigationNaming": false,
+   "UseSchemaFolders": false,
+   "UseSchemaNamespaces": false,
+   "UseSpatial": false,
+   "UseT4": false,
+   "UseT4Split": false
+}
