@@ -124,12 +124,12 @@ namespace Smmsbe.WebApi.Controllers
         }
 
         //Manager sẽ kích hoạt bằng tay
-        [HttpPost("activate")]
+        /*[HttpPost("activate")]
         public async Task<IActionResult> Activate(ActivateRequest request)
         {
             var result = await _nurseService.ActivateAccountAsync(request.Code);
             return Ok(new { success = result });
-        }
+        }*/
 
         //Nurse nhấn vào link để kích hoạt  
         /*[HttpGet("activate/{code}")]
