@@ -114,8 +114,8 @@ namespace Smmsbe.Services
                 var content = htmlContent.Replace("{{UserName}}", parent.FullName)
                                          .Replace("{{UserEmail}}", parent.Email)
                                          .Replace("{{CreatedDate}}", DateTime.Now.ToVNTime().ToString("dd/MM/yyyy"))
-                                            //.Replace("{{ActivationLink}}", $"{_appSettings.ApplicationUrl}/api/parent/activate/{activationCode}");
-                                            .Replace("{{ActivationLink}}", $"{_appSettings.LandingPageUrl}/api/parent/activate/{activationCode}");
+                                            //.Replace("{{ActivationLink}}", $"{_appSettings.ApplicationUrl}/api/parent/activate/{activationCode}");     //chỉ test trên BE
+                                            .Replace("{{ActivationLink}}", $"{_appSettings.LandingPageUrl}/activate/{activationCode}");      //kết nối với FE
 
                 _logger.LogInformation("Sending account created email to {Email}", parent.Email);
 

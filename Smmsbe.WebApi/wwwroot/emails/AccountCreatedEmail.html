@@ -2,44 +2,65 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Thông báo tài khoản đã được kích hoạt</title>
+    <title>Kích hoạt tài khoản School Care</title>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f2f2f2; padding: 20px;">
-    <table align="center" width="600" style="background-color: #ffffff; padding: 30px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1);">
-        <tr>
-            <td align="center">
-                <h2 style="color: #4CAF50;">🎉 Chúc mừng!</h2>
-                <p style="font-size: 16px; color: #333333;">
-                    Tài khoản của bạn đã được <strong>tạo thành công.</strong>.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding-top: 20px;">
-                <p style="font-size: 15px; color: #555555;">
-                    Thông tin tài khoản:
-                </p>
-                <ul style="font-size: 15px; color: #555555; line-height: 1.6;">
-                    <li><strong>Tên tài khoản:</strong> {{UserName}}</li>
-                    <li><strong>Email đăng ký:</strong> {{UserEmail}}</li>
-                    <li><strong>Ngày tạo:</strong> {{CreatedDate}}</li>
-                    <li><strong>Kích hoạt:</strong><a href="{{ActivationLink}}">{{ActivationLink}}</a></li>
-                </ul>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding-top: 20px;">
-                <p style="font-size: 15px; color: #555555;">
-                    Vui lòng kích hoạt và bắt đầu sử dụng dịch vụ của chúng tôi.
-                </p>
-            </td>
-        </tr>
-        <tr>
-            <td style="padding-top: 40px; text-align: center; font-size: 13px; color: #999999;">
-                Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với đội ngũ hỗ trợ của chúng tôi.<br>
-                Xin cảm ơn bạn đã đồng hành cùng chúng tôi!
-            </td>
-        </tr>
-    </table>
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 24px; margin: 0;">
+    <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 32px;">
+            <h1 style="color: #0d9488; margin: 0; font-size: 28px; font-weight: bold;">🎉 Chào mừng đến với School Care!</h1>
+            <p style="color: #6b7280; margin: 8px 0 0 0; font-size: 16px;">
+                Tài khoản của bạn đã được tạo thành công
+            </p>
+        </div>
+
+        <!-- Main Content -->
+        <div style="background-color: #f8fafc; padding: 24px; border-radius: 8px; margin-bottom: 24px;">
+            <h3 style="color: #374151; margin: 0 0 16px 0; font-size: 18px;">📋 Thông tin tài khoản:</h3>
+            <div style="color: #4b5563; line-height: 1.6;">
+                <p style="margin: 8px 0;"><strong>👤 Tên:</strong> {{UserName}}</p>
+                <p style="margin: 8px 0;"><strong>📧 Email:</strong> {{UserEmail}}</p>
+                <p style="margin: 8px 0;"><strong>📅 Ngày tạo:</strong> {{CreatedDate}}</p>
+            </div>
+        </div>
+
+        <!-- Activation Section -->
+        <div style="background-color: #ecfdf5; padding: 24px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #10b981;">
+            <h3 style="color: #065f46; margin: 0 0 16px 0; font-size: 18px;">🔐 Bước tiếp theo - Kích hoạt tài khoản</h3>
+            <p style="color: #047857; margin: 0 0 20px 0; line-height: 1.6;">
+                Để bắt đầu sử dụng hệ thống School Care, vui lòng kích hoạt tài khoản của bạn bằng cách nhấp vào nút bên dưới:
+            </p>
+            <div style="text-align: center;">
+                <a href="{{ActivationLink}}"
+                   style="display: inline-block; background-color: #0d9488; color: white; padding: 14px 28px; text-decoration: none; border-radius: 8px; font-weight: bold; font-size: 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    🚀 Kích hoạt tài khoản ngay
+                </a>
+            </div>
+            <p style="color: #047857; margin: 16px 0 0 0; font-size: 14px; text-align: center;">
+                Hoặc copy link này: <a href="{{ActivationLink}}" style="color: #0d9488; word-break: break-all;">{{ActivationLink}}</a>
+            </p>
+        </div>
+
+        <!-- Instructions -->
+        <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #f59e0b;">
+            <h4 style="color: #92400e; margin: 0 0 12px 0; font-size: 16px;">💡 Hướng dẫn:</h4>
+            <ul style="color: #92400e; margin: 0; padding-left: 20px; line-height: 1.6;">
+                <li>Nhấp vào nút "Kích hoạt tài khoản" hoặc copy link bên trên</li>
+                <li>Hệ thống sẽ tự động kích hoạt tài khoản của bạn</li>
+                <li>Sau khi kích hoạt thành công, bạn có thể đăng nhập và sử dụng hệ thống</li>
+                <li>Link kích hoạt chỉ có hiệu lực một lần và sẽ hết hạn sau 24 giờ</li>
+            </ul>
+        </div>
+
+        <!-- Footer -->
+        <div style="text-align: center; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; margin: 0 0 8px 0; font-size: 14px;">
+                Nếu bạn gặp vấn đề hoặc có câu hỏi, vui lòng liên hệ với đội ngũ hỗ trợ của chúng tôi.
+            </p>
+            <p style="color: #9ca3af; margin: 0; font-size: 12px;">
+                © 2025 School Care - Hệ thống quản lý y tế học đường
+            </p>
+        </div>
+    </div>
 </body>
 </html>

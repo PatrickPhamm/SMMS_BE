@@ -2,23 +2,66 @@
 <html lang="vi">
 <head>
     <meta charset="UTF-8">
-    <title>Kích hoạt tài khoản</title>
+    <title>Tài khoản đã được kích hoạt - School Care</title>
 </head>
-<body style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 24px;">
+<body style="font-family: Arial, sans-serif; background-color: #f4f6f8; padding: 24px; margin: 0;">
     <div style="max-width: 600px; margin: auto; background-color: #ffffff; padding: 32px; border-radius: 12px; box-shadow: 0 2px 10px rgba(0,0,0,0.05);">
-        <h2 style="color: #2ecc71;">🎉 Tài khoản đã được kích hoạt</h2>
+        <!-- Header -->
+        <div style="text-align: center; margin-bottom: 32px;">
+            <h1 style="color: #10b981; margin: 0; font-size: 28px; font-weight: bold;">✅ Tài khoản đã được kích hoạt!</h1>
+            <p style="color: #6b7280; margin: 8px 0 0 0; font-size: 16px;">
+                Chào mừng bạn đến với hệ thống School Care
+            </p>
+        </div>
 
-        <p>Xin chào <strong>{{UserFullName}}</strong>,</p>
+        <!-- Main Content -->
+        <div style="background-color: #ecfdf5; padding: 24px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #10b981;">
+            <h3 style="color: #065f46; margin: 0 0 16px 0; font-size: 18px;">🎉 Kích hoạt thành công!</h3>
+            <p style="color: #047857; margin: 0 0 12px 0; line-height: 1.6;">
+                Xin chào <strong>{{UserFullName}}</strong>,
+            </p>
+            <p style="color: #047857; margin: 0 0 16px 0; line-height: 1.6;">
+                Tài khoản của bạn đã được kích hoạt thành công vào lúc <strong>{{ActivatedTime}}</strong>.
+            </p>
+            <p style="color: #047857; margin: 0; line-height: 1.6;">
+                Bây giờ bạn có thể đăng nhập và sử dụng đầy đủ các tính năng của hệ thống School Care.
+            </p>
+        </div>
 
-        <p>Tài khoản của bạn đã được kích hoạt thành công vào lúc <strong>{{ActivatedTime}}</strong>.</p>
+        <!-- Next Steps -->
+        <div style="background-color: #f8fafc; padding: 24px; border-radius: 8px; margin-bottom: 24px;">
+            <h3 style="color: #374151; margin: 0 0 16px 0; font-size: 18px;">🚀 Bước tiếp theo:</h3>
+            <div style="color: #4b5563; line-height: 1.6;">
+                <ol style="margin: 0; padding-left: 20px;">
+                    <li>Truy cập trang đăng nhập của hệ thống</li>
+                    <li>Sử dụng email và mật khẩu đã đăng ký để đăng nhập</li>
+                    <li>Khám phá các tính năng và dịch vụ của School Care</li>
+                    <li>Liên hệ với chúng tôi nếu cần hỗ trợ</li>
+                </ol>
+            </div>
+        </div>
 
-        <p>Nếu bạn gặp khó khăn trong việc truy cập tài khoản, vui lòng liên hệ bộ phận hỗ trợ.</p>
+        <!-- Features -->
+        <div style="background-color: #fef3c7; padding: 20px; border-radius: 8px; margin-bottom: 24px; border-left: 4px solid #f59e0b;">
+            <h4 style="color: #92400e; margin: 0 0 12px 0; font-size: 16px;">💡 Các tính năng chính:</h4>
+            <ul style="color: #92400e; margin: 0; padding-left: 20px; line-height: 1.6;">
+                <li>Quản lý hồ sơ sức khỏe học sinh</li>
+                <li>Theo dõi lịch tiêm chủng và khám sức khỏe</li>
+                <li>Đăng ký tư vấn y tế</li>
+                <li>Nhận thông báo và cập nhật từ nhà trường</li>
+                <li>Xem báo cáo và thống kê sức khỏe</li>
+            </ul>
+        </div>
 
-        <p style="margin-top: 32px;">Trân trọng,<br><strong>Hệ thống SMMS</strong></p>
-
-        <hr style="margin: 32px 0;">
-        <p style="font-size: 13px; color: #7f8c8d;">Email này được gửi từ hệ thống tự động. Vui lòng không trả lời lại.</p>
-        <p style="font-size: 13px; color: #7f8c8d;">© 2025 Công ty TNHH Ứng Dụng SMMS</p>
+        <!-- Footer -->
+        <div style="text-align: center; padding-top: 24px; border-top: 1px solid #e5e7eb;">
+            <p style="color: #6b7280; margin: 0 0 8px 0; font-size: 14px;">
+                Nếu bạn gặp khó khăn trong việc truy cập tài khoản, vui lòng liên hệ bộ phận hỗ trợ.
+            </p>
+            <p style="color: #9ca3af; margin: 0; font-size: 12px;">
+                © 2025 School Care - Hệ thống quản lý y tế học đường
+            </p>
+        </div>
     </div>
 </body>
 </html>

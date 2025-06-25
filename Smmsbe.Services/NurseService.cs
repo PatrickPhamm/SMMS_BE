@@ -96,8 +96,8 @@ namespace Smmsbe.Services
                 var content = htmlContent.Replace("{{UserName}}", nurse.FullName)
                                          .Replace("{{UserEmail}}", nurse.Email)
                                          .Replace("{{CreatedDate}}", DateTime.Now.ToVNTime().ToString("dd/MM/yyyy"))
-                                         //.Replace("{{ActivationLink}}", $"{_appSettings.ApplicationUrl}/api/nurse/activate/{activationCode}");
-                                         .Replace("{{ActivationLink}}", $"{_appSettings.LandingPageUrl}/api/nurse/activate/{activationCode}");
+                                         //.Replace("{{ActivationLink}}", $"{_appSettings.ApplicationUrl}/api/nurse/activate/{activationCode}");   //chỉ test trên BE
+                                         .Replace("{{ActivationLink}}", $"{_appSettings.LandingPageUrl}/activate/{activationCode}");    //kết nối với FE
 
                 _logger.LogInformation("Sending account created email to {Email}", nurse.Email);
 
