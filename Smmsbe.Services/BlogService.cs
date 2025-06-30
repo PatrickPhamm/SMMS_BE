@@ -84,7 +84,6 @@ namespace Smmsbe.Services
             var updateBlog = await _blogRepository.GetById(request.BlogId);
             if (updateBlog == null) throw AppExceptions.NotFoundId();
 
-            //updateBlog.ManagerId = request.ManagerId;
             updateBlog.Title = request.Title;
             updateBlog.Content = request.Content;
             updateBlog.DatePosted = request.DatePosted;
