@@ -1,8 +1,10 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using Microsoft.SqlServer.Server;
 using Smmsbe.Repositories;
 using Smmsbe.Repositories.Entities;
 using Smmsbe.Repositories.Interfaces;
+using Smmsbe.Services.Common;
 using Smmsbe.Services.Enum;
 using Smmsbe.Services.Exceptions;
 using Smmsbe.Services.Interfaces;
@@ -12,20 +14,44 @@ namespace Smmsbe.Services
 {
     public class FormService : IFormService
     {
-        private readonly IFormRepository _formRepository;
-        private readonly IConsentFormRepository _consentFormRepository;
+        private readonly ILogger _logger;
         private readonly IParentRepository _parentRepository;
         private readonly IStudentRepository _studentRepository;
+        private readonly IConsentFormRepository _consentFormRepository;
+        private readonly IFormRepository _formRepository;
+        private readonly IVaccinationResultRepository _vaccinationResultRepository;
+        private readonly IHealthCheckResultRepository _healthCheckResultRepository;
+        private readonly IVaccinationScheduleRepository _vaccinationScheduleRepository;
+        private readonly IHealthCheckupScheduleRepository _healthCheckupScheduleRepository;
+        private readonly IHashHelper _hashHelper;
+        private readonly IEmailHelper _emailHelper;
+        private readonly AppSettings _appSettings;
 
-        public FormService(IFormRepository formRepository
-            , IConsentFormRepository consentFormRepository
-            , IParentRepository parentRepository
-            , IStudentRepository studentRepository)
+        public FormService(IConsentFormRepository consentFormRepository,
+            IParentRepository parentRepository,
+            IStudentRepository studentRepository,
+            IFormRepository formRepository,
+            IVaccinationResultRepository vaccinationResultRepository,
+            IHealthCheckResultRepository healthCheckResultRepository,
+            IHashHelper hashHelper,
+            IEmailHelper emailHelper,
+            AppSettings appSettings,
+            IVaccinationScheduleRepository vaccinationScheduleRepository,
+            IHealthCheckupScheduleRepository healthCheckupScheduleRepository,
+            ILogger<FormService> logger) 
         {
-            _formRepository = formRepository;
-            _consentFormRepository = consentFormRepository;
             _parentRepository = parentRepository;
             _studentRepository = studentRepository;
+            _consentFormRepository = consentFormRepository;
+            _formRepository = formRepository;
+            _vaccinationResultRepository = vaccinationResultRepository;
+            _healthCheckResultRepository = healthCheckResultRepository;
+            _hashHelper = hashHelper;
+            _emailHelper = emailHelper;
+            _appSettings = appSettings;
+            _vaccinationScheduleRepository = vaccinationScheduleRepository;
+            _healthCheckupScheduleRepository = healthCheckupScheduleRepository;
+            _logger = logger;
         }
 
         public async Task<FormResponse> GetById(int id)
@@ -132,7 +158,60 @@ namespace Smmsbe.Services
                 }).ToList()
             };
 
+            // Gửi email thông báo cho từng phụ huynh
+            await SendFormNotificationEmails(request.ParentIds, createdForm);
+
             return response;
+        }
+
+        private async Task SendFormNotificationEmails(List<int> parentIds, Form form)
+        {
+            foreach (var parentId in parentIds)
+            {
+                try
+                {
+                    var parent = await _parentRepository.GetAll()
+                        .Include(p => p.Students)
+                        .FirstOrDefaultAsync(p => p.ParentId == parentId);
+
+                    if (parent == null) continue;
+
+                    // Lấy TẤT CẢ con của phụ huynh (không lọc theo lớp)
+                    var allStudents = parent.Students.ToList();
+
+                    if (!allStudents.Any())
+                    {
+                        _logger.LogWarning("No students found for Parent ID {ParentId}", parentId);
+                        continue;
+                    }
+
+                    // Tạo danh sách tên tất cả các con
+                    //var studentNames = string.Join(", ", allStudents.Select(s => s.FullName));
+
+                    // Tạo danh sách tên và mã số tất cả các con
+                    var studentNames = string.Join(", ", allStudents.Select(s => $"{s.FullName} - {s.StudentNumber}"));
+
+                    var emailTemplatePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "emails", "FormNotificationEmail.html");
+                    var htmlContent = await File.ReadAllTextAsync(emailTemplatePath);
+
+                    var content = htmlContent.Replace("{{StudentName}}", studentNames)
+                                             .Replace("{{ParentName}}", parent.FullName ?? "N/A")
+                                             .Replace("{{ParentEmail}}", parent.Email ?? "N/A")
+                                             .Replace("{{FormTitle}}", form.Title ?? "N/A")
+                                             .Replace("{{FormContent}}", form.Content ?? "N/A")
+                                             .Replace("{{CreatedDate}}", DateTime.Now.ToString("dd/MM/yyyy"))
+                                             .Replace("{{SystemUrl}}", _appSettings.LandingPageUrl ?? "#");   //# : FE điền link vào.
+
+                    await _emailHelper.SendEmailAsync(parent.Email, $"Thông báo: {form.Title}", content, true, null, null);
+
+                    _logger.LogInformation("Sent notification email to {Email} for all {StudentCount} students: {StudentNames}",
+                        parent.Email, allStudents.Count, studentNames);
+                }
+                catch (Exception ex)
+                {
+                    _logger.LogError(ex, "Error sending email to Parent ID {ParentId}", parentId);
+                }
+            }
         }
 
         public async Task<FormResponse> UpdateFormAsync(UpdateFormRequest request)

@@ -85,7 +85,6 @@ namespace Smmsbe.WebApi.Controllers
             return Ok(acc);
         }
 
-
         [HttpPost("search")]
         public async Task<IActionResult> Search(SearchNurseRequest request)
         {
