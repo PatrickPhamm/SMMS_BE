@@ -13,12 +13,15 @@ namespace Smmsbe.Services
     public class VaccinationScheduleService : IVaccinationScheduleService
     {
         private readonly IVaccinationScheduleRepository _vaccinationScheduleRepository;
+        private readonly IHealthCheckupScheduleRepository _healthCheckupScheduleRepository;
         private readonly IFormRepository _formRepository;
 
-        public VaccinationScheduleService(IVaccinationScheduleRepository vaccinationScheduleRepository
-            , IFormRepository formRepository)
+        public VaccinationScheduleService(IVaccinationScheduleRepository vaccinationScheduleRepository,
+            IHealthCheckupScheduleRepository healthCheckupScheduleRepository,
+            IFormRepository formRepository)
         {
             _vaccinationScheduleRepository = vaccinationScheduleRepository;
+            _healthCheckupScheduleRepository = healthCheckupScheduleRepository;
             _formRepository = formRepository;
         }
 
@@ -58,6 +61,28 @@ namespace Smmsbe.Services
 
         public async Task<VaccinationSchedule> AddVaccinationScheduleAsync(AddVaccinationScheduleRequest request)
         {
+            // Kiểm tra xem đã có lịch tiêm chủng nào trong ngày này chưa
+            var existingVaccination = await _vaccinationScheduleRepository.GetAll()
+                .Where(x => x.ScheduleDate.HasValue && request.ScheduleDate.HasValue &&
+                           x.ScheduleDate.Value.Date == request.ScheduleDate.Value.Date)
+                .FirstOrDefaultAsync();
+
+            if (existingVaccination != null)
+            {
+                throw AppExceptions.ScheduleAlreadyExist();
+            }
+
+            // Kiểm tra xem đã có lịch khám sức khỏe nào trong ngày này chưa
+            var existingHealthCheck = await _healthCheckupScheduleRepository.GetAll()
+                .Where(x => x.CheckDate.HasValue && request.ScheduleDate.HasValue &&
+                           x.CheckDate.Value.Date == request.ScheduleDate.Value.Date)
+                .FirstOrDefaultAsync();
+
+            if (existingHealthCheck != null)
+            {
+                throw AppExceptions.ScheduleAlreadyExist();
+            }
+
             var added = new VaccinationSchedule
             {
                 FormId = request.FormId,

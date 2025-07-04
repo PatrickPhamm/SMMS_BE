@@ -13,12 +13,15 @@ namespace Smmsbe.Services
     public class HealthCheckScheduleService : IHealthCheckScheduleService
     {
         private readonly IHealthCheckupScheduleRepository _healthCheckupScheduleRepository;
+        private readonly IVaccinationScheduleRepository _vaccinationScheduleRepository;
         private readonly IFormRepository _formRepository;
 
         public HealthCheckScheduleService(IHealthCheckupScheduleRepository healthCheckupScheduleRepository
-            , IFormRepository formRepository) 
+            , IVaccinationScheduleRepository vaccinationScheduleRepository
+            , IFormRepository formRepository)
         {
             _healthCheckupScheduleRepository = healthCheckupScheduleRepository;
+            _vaccinationScheduleRepository = vaccinationScheduleRepository;
             _formRepository = formRepository;
         }
 
@@ -58,6 +61,28 @@ namespace Smmsbe.Services
 
         public async Task<HealthCheckSchedule> AddHealthCheckScheduleAsync(AddHealthCheckScheduleRequest request)
         {
+
+            var existingHealthCheck = await _healthCheckupScheduleRepository.GetAll()
+                .Where(x => x.CheckDate.HasValue && request.CheckDate.HasValue &&
+                           x.CheckDate.Value.Date == request.CheckDate.Value.Date)
+                .FirstOrDefaultAsync();
+
+            if (existingHealthCheck != null)
+            {
+                throw AppExceptions.ScheduleAlreadyExist();
+            }
+
+            // Kiểm tra xem đã có lịch tiêm chủng nào trong ngày này chưa
+            var existingVaccination = await _vaccinationScheduleRepository.GetAll()
+                .Where(x => x.ScheduleDate.HasValue && request.CheckDate.HasValue &&
+                           x.ScheduleDate.Value.Date == request.CheckDate.Value.Date)
+                .FirstOrDefaultAsync();
+
+            if (existingVaccination != null)
+            {
+                throw AppExceptions.ScheduleAlreadyExist();
+            }
+
             var added = new HealthCheckSchedule
             {
                 FormId = request.FormId,

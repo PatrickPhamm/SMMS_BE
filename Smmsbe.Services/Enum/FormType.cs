@@ -1,5 +1,4 @@
-﻿using System;
-namespace Smmsbe.Services.Enum
+﻿namespace Smmsbe.Services.Enum
 {
     public enum FormType
     {

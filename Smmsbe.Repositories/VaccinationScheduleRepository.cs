@@ -2,11 +2,6 @@
 using Smmsbe.Repositories.Entities;
 using Smmsbe.Repositories.Infrastructure;
 using Smmsbe.Repositories.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Smmsbe.Repositories
 {
@@ -17,6 +12,11 @@ namespace Smmsbe.Repositories
         public override async Task<VaccinationSchedule> GetById(int id)
         {
             return await Table.FirstOrDefaultAsync(x => x.VaccinationScheduleId == id);
+        }
+
+        public async Task<bool> VaccineScheduleIdExsistAsync(int id)
+        {
+            return await Table.AnyAsync(y => y.VaccinationScheduleId == id);
         }
     }
 }

@@ -1,11 +1,9 @@
-﻿using Smmsbe.Repositories.Entities;
-using Smmsbe.Services.Enum;
+﻿using Smmsbe.Services.Enum;
 
 namespace Smmsbe.Services.Models
 {
     public class AddFormRequest
     {
-        //public int? ManagerId { get; set; }
         public string ClassName { get; set; }
         public string Title { get; set; }
         public string Content { get; set; }

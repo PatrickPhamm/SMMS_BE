@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Smmsbe.Services.Exceptions
+﻿namespace Smmsbe.Services.Exceptions
 {
     public static class AppExceptions
     {
@@ -56,6 +50,11 @@ namespace Smmsbe.Services.Exceptions
         public static AppException AccountNotActivated()
         {
             return new BadRequestException("MSG09", "Tài khoản chưa được kích hoạt.");
+        }
+
+        public static AppException ScheduleAlreadyExist()
+        {
+            return new BadRequestException("MSG10", "Ngày này đã có lịch. Vui lòng chọn ngày khác");
         }
     }
 }
