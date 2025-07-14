@@ -130,7 +130,7 @@ namespace Smmsbe.Services
             }
         }
 
-        const string ImageFolder = "files/blogs/";
+        const string ImageFolder = "files/parentPrecriptions/";
 
         public string GetImageFolder()
         {
