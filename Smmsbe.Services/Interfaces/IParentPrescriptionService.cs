@@ -1,10 +1,5 @@
 ﻿using Smmsbe.Repositories.Entities;
 using Smmsbe.Services.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Smmsbe.Services.Interfaces
 {
@@ -17,5 +12,7 @@ namespace Smmsbe.Services.Interfaces
         Task<ParentPrescription> UpdateParentPrescriptionAsync(UpdateParentPrescriptionRequest request);
         Task<bool> DeleteParentPrescriptionAsync(int id);
         string GetImageFolder();
+        Task<bool> AcceptPrescription(int prescriptionId);
+        Task<bool> RejectPrescription(int prescriptionId);
     }
 }

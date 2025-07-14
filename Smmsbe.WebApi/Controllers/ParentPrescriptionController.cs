@@ -110,5 +110,21 @@ namespace Smmsbe.WebApi.Controllers
                 return StatusCode(500, $"Internal server error: {ex.Message}");
             }
         }
+
+        [HttpPost("accept/{id}")]
+        public async Task<IActionResult> Approve(int id)
+        {
+            var result = await _parentPrescriptionService.AcceptPrescription(id);
+
+            return Ok(result);
+        }
+
+        [HttpPost("reject/{id}")]
+        public async Task<IActionResult> Reject(int id)
+        {
+            var result = await _parentPrescriptionService.RejectPrescription(id);
+
+            return Ok(result);
+        }
     }
 }

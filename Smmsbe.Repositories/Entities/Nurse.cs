@@ -18,11 +18,11 @@ public partial class Nurse : IEntityBase
 
     public string PasswordHash { get; set; }
 
-    public string ActivationCode { get; set; }    
+    public string ActivationCode { get; set; }
 
-    public bool IsActive { get; set; }    
+    public bool IsActive { get; set; }
 
-    public string Note { get; set; }      
+    public string Note { get; set; }
 
     public virtual ICollection<ConsultationSchedule> ConsultationSchedules { get; set; } = new List<ConsultationSchedule>();
 

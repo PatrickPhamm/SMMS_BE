@@ -22,6 +22,8 @@ public partial class ParentPrescription : IEntityBase
 
     public string PrescriptionFile { get; set; }
 
+    public int? Status { get; set; }
+
     public virtual ICollection<Medication> Medications { get; set; } = new List<Medication>();
 
     public virtual Nurse Nurse { get; set; }

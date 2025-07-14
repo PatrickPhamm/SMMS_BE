@@ -20,11 +20,11 @@ public partial class Parent : IEntityBase
 
     public string PasswordHash { get; set; }
 
-    public string ActivationCode { get; set; }  
+    public string ActivationCode { get; set; }
 
-    public bool IsActive { get; set; }       
+    public bool IsActive { get; set; }
 
-    public string Note { get; set; }       
+    public string Note { get; set; }
 
     public virtual ICollection<ConsentForm> ConsentForms { get; set; } = new List<ConsentForm>();
 

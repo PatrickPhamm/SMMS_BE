@@ -8,7 +8,6 @@ namespace Smmsbe.Services.Models
 {
     public class AddConsentFormRequest
     { 
-
         public int? FormId { get; set; }
         public int? ParentId { get; set; }
     }

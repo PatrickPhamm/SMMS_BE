@@ -259,10 +259,10 @@ public partial class SMMSContext : DbContext
 
             entity.ToTable("Nurse");
 
-            entity.Property(e => e.ActivationCode).HasMaxLength(32);  
+            entity.Property(e => e.ActivationCode).HasMaxLength(32);
             entity.Property(e => e.Email).HasMaxLength(100);
-            entity.Property(e => e.FullName).HasMaxLength(100);     
-            entity.Property(e => e.Note).HasMaxLength(256);   
+            entity.Property(e => e.FullName).HasMaxLength(100);
+            entity.Property(e => e.Note).HasMaxLength(256);
             entity.Property(e => e.PasswordHash).HasMaxLength(256);
             entity.Property(e => e.Username).HasMaxLength(100);
         });
@@ -273,11 +273,11 @@ public partial class SMMSContext : DbContext
 
             entity.ToTable("Parent");
 
-            entity.Property(e => e.ActivationCode).HasMaxLength(32);   
+            entity.Property(e => e.ActivationCode).HasMaxLength(32);
             entity.Property(e => e.Address).HasMaxLength(250);
             entity.Property(e => e.Email).HasMaxLength(100);
             entity.Property(e => e.FullName).HasMaxLength(100);
-            entity.Property(e => e.Note).HasMaxLength(256);      
+            entity.Property(e => e.Note).HasMaxLength(256);
             entity.Property(e => e.PasswordHash).HasMaxLength(256);
             entity.Property(e => e.PhoneNumber).HasMaxLength(15);
         });

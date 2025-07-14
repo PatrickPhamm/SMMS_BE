@@ -15,5 +15,6 @@ namespace Smmsbe.Services.Models
         public string Schedule { get; set; }
         public string ParentNote { get; set; }
         public string PrescriptionFile { get; set; }
+        public string? Status { get; set; }
     }
 }

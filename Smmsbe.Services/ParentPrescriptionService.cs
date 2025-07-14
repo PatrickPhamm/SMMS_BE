@@ -3,6 +3,7 @@ using Smmsbe.Repositories;
 using Smmsbe.Repositories.Entities;
 using Smmsbe.Repositories.Interfaces;
 using Smmsbe.Services.Common;
+using Smmsbe.Services.Enum;
 using Smmsbe.Services.Exceptions;
 using Smmsbe.Services.Interfaces;
 using Smmsbe.Services.Models;
@@ -44,6 +45,7 @@ namespace Smmsbe.Services
                                             Schedule = x.Schedule,
                                             SubmittedDate = x.SubmittedDate,
                                             PrescriptionFile = x.PrescriptionFile,
+                                            Status = ((ParentPrescriptionStatus)x.Status).ToString(),
                                             Parent = new ParentResponse
                                             {
                                                 ParentId = x.Parent.ParentId,
@@ -68,7 +70,8 @@ namespace Smmsbe.Services
                 Schedule = request.Schedule,
                 ParentNote = request.ParentNote,
                 ParentId = request.ParentId,
-                PrescriptionFile = request.PrescriptionFile
+                PrescriptionFile = request.PrescriptionFile,
+                Status = (int)ParentPrescriptionStatus.Pending
             };
 
             return await _parentPrescriptionRepository.Insert(ParentPre);
@@ -104,7 +107,8 @@ namespace Smmsbe.Services
                 ParentNote = x.ParentNote,
                 Schedule = x.Schedule,
                 SubmittedDate = x.SubmittedDate,
-                PrescriptionFile = x.PrescriptionFile
+                PrescriptionFile = x.PrescriptionFile,
+                Status = ((ParentPrescriptionStatus)x.Status).ToString()
             }).ToListAsync();
 
             return parPre;
@@ -142,6 +146,30 @@ namespace Smmsbe.Services
 
             // Assuming _appSettings.ApplicationUrl is the base URL of your application
             return $"{_appSettings.ApplicationUrl}/{ImageFolder}/{thumbnail}";
+        }
+
+        public async Task<bool> AcceptPrescription(int prescriptionId)
+        {
+            var prescription = await _parentPrescriptionRepository.GetById(prescriptionId);
+            if (prescription == null) return false;
+
+            prescription.Status = (int)ParentPrescriptionStatus.Accepted;
+
+            await _parentPrescriptionRepository.Update(prescription);
+
+            return true;
+        }
+
+        public async Task<bool> RejectPrescription(int prescriptionId)
+        {
+            var prescription = await _parentPrescriptionRepository.GetById(prescriptionId);
+            if (prescription == null) return false;
+
+            prescription.Status = (int)ParentPrescriptionStatus.Rejected;
+
+            await _parentPrescriptionRepository.Update(prescription);
+
+            return true;
         }
     }
 }
