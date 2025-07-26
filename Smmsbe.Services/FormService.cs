@@ -212,7 +212,7 @@ namespace Smmsbe.Services
             }
         }
 
-        public async Task<FormResponse> UpdateFormAsync(UpdateFormRequest request)
+        public async Task<UpdateFormResponse> UpdateFormAsync(UpdateFormRequest request)
         {
             var updateForm = await _formRepository.GetById(request.FormId);
 
@@ -224,14 +224,12 @@ namespace Smmsbe.Services
 
             await _formRepository.Update(updateForm);
 
-            return new FormResponse
+            return new UpdateFormResponse
             {
                 FormId = updateForm.FormId,
                 Title = updateForm.Title,
                 ClassName = updateForm.ClassName,
                 Content = updateForm.Content,
-                //SentDate = updateForm.SentDate,
-                //CreatedAt= request.CreatedAt,
                 Type = ((FormType)updateForm.Type).ToString()
             };
         }

@@ -8,7 +8,7 @@ namespace Smmsbe.Services.Interfaces
         Task<FormResponse> GetById(int id);
         //Task<FormResponse> AddFormAsync(AddFormRequest request);
         Task<FormResponseAdded> AddFormAsync(AddFormRequest request);
-        Task<FormResponse> UpdateFormAsync(UpdateFormRequest request);
+        Task<UpdateFormResponse> UpdateFormAsync(UpdateFormRequest request);
         Task<List<FormResponse>> SearchFormAsync(SearchFormRequest request);
         Task<bool> DeleteFormAsync(int id);
     }
