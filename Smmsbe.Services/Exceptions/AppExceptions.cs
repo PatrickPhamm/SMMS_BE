@@ -56,5 +56,10 @@
         {
             return new BadRequestException("MSG10", "Ngày này đã có lịch. Vui lòng chọn ngày khác");
         }
+
+        public static AppException BadRequestPhoneNumbeerIsExists()
+        {
+            return new BadRequestException("MSG11", "Số điện thoại đã tồn tại");
+        }
     }
 }

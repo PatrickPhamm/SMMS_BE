@@ -87,6 +87,9 @@ namespace Smmsbe.Services
             var exstingAcc = await _parentRepository.GetAll().FirstOrDefaultAsync(x => x.Email == request.Email);
             if (exstingAcc != null) throw AppExceptions.BadRequestEmailIsExists();
 
+            var exstingPhone = await _parentRepository.GetAll().FirstOrDefaultAsync(x => x.PhoneNumber == request.PhoneNumber);
+            if (exstingPhone != null) throw AppExceptions.BadRequestPhoneNumbeerIsExists();
+
             var activationCode = Guid.NewGuid().ToString("N");
 
             var newParentAcc = new Parent
@@ -198,6 +201,7 @@ namespace Smmsbe.Services
                 query = query.Where(
                             s => s.ParentId.ToString().Contains(request.Keyword) ||
                             (!string.IsNullOrEmpty(s.FullName) && s.FullName.Contains(request.Keyword)) ||
+                            (!string.IsNullOrEmpty(s.Email) && s.Email.Contains(request.Keyword)) ||
                             (!string.IsNullOrEmpty(s.PhoneNumber) && s.PhoneNumber.Contains(request.Keyword)));
 
             var parents = await query.Select(n => new ParentResponse
