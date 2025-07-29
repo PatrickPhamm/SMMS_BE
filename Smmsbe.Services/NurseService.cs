@@ -128,7 +128,7 @@ namespace Smmsbe.Services
             return accNur;
         }
 
-        public async Task<Nurse> UpdateNurseAsync(UpdateNurseRequest request)
+        public async Task<NurseResponse> UpdateNurseAsync(UpdateNurseRequest request)
         {
             var updateNurse = await _nurseRepository.GetById(request.NurseId);
             if(updateNurse == null) throw AppExceptions.NotFoundAccount();
@@ -138,8 +138,14 @@ namespace Smmsbe.Services
             updateNurse.Username = request.Username;
             updateNurse.Email = request.Email;
             
-            await _nurseRepository.Update(updateNurse);    
-            return updateNurse;
+            await _nurseRepository.Update(updateNurse);
+            return new NurseResponse
+            {
+                NurseId = updateNurse.NurseId,
+                FullName = updateNurse.FullName,
+                Username = updateNurse.Username,
+                Email = updateNurse.Email
+            };
         }
 
         public async Task<List<NurseResponse>> SearchNurseAsync(SearchNurseRequest request)

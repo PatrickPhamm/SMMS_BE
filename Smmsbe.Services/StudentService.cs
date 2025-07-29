@@ -117,13 +117,11 @@ namespace Smmsbe.Services
             return accNur;
         }
 
-        public async Task<Student> UpdateStudentAsync(UpdateStudentRequest request)
+        public async Task<UpdateStudentReponse> UpdateStudentAsync(UpdateStudentRequest request)
         {
             var updateStudent = await _studentRepository.GetById(request.StudentId);
             if (updateStudent == null) throw AppExceptions.NotFoundAccount();
 
-            updateStudent.StudentId = request.StudentId;
-            updateStudent.ParentId = request.ParentId;
             updateStudent.FullName = request.FullName;
             updateStudent.ClassName = request.ClassName;
             updateStudent.DateOfBirth = request.DateOfBirth;
@@ -131,7 +129,15 @@ namespace Smmsbe.Services
             updateStudent.StudentNumber = request.StudentNumber;
 
             await _studentRepository.Update(updateStudent);
-            return updateStudent;
+            return new UpdateStudentReponse
+            {
+                StudentId = updateStudent.StudentId,
+                FullName = updateStudent.FullName,
+                DateOfBirth = updateStudent.DateOfBirth,
+                Gender = updateStudent.Gender,
+                ClassName = updateStudent.ClassName,
+                StudentNumber = updateStudent.StudentNumber
+            };
         }
 
         public async Task<List<StudentResponse>> SearchStudentAsync(SearchStudentRequest request)

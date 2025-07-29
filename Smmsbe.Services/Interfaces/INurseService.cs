@@ -7,7 +7,7 @@ namespace Smmsbe.Services.Interfaces
     {
         Task<Nurse> GetById(int id);
         Task<Nurse> AuthorizeAsync(string username, string password);
-        Task<Nurse> UpdateNurseAsync(UpdateNurseRequest request);
+        Task<NurseResponse> UpdateNurseAsync(UpdateNurseRequest request);
         Task<Nurse> AddNurseAsync(AddNurseRequest request);
         Task<bool> DeleteNurseAsync(int id);
         Task<List<NurseResponse>> SearchNurseAsync(SearchNurseRequest request);

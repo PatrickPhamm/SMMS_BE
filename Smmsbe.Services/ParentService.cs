@@ -169,7 +169,7 @@ namespace Smmsbe.Services
         }*/
         #endregion
 
-        public async Task<Parent> UpdateParentAsync(UpdateParentRequest request)
+        public async Task<ParentResponse> UpdateParentAsync(UpdateParentRequest request)
         {
             var updateParent = await _parentRepository.GetById(request.ParentId);
             if (updateParent == null) throw AppExceptions.NotFoundAccount();
@@ -180,7 +180,14 @@ namespace Smmsbe.Services
             updateParent.Address = request.Address;
 
             await _parentRepository.Update(updateParent);
-            return updateParent;
+            return new ParentResponse
+            {
+                ParentId = updateParent.ParentId,
+                FullName = updateParent.FullName,
+                PhoneNumber = updateParent.PhoneNumber,
+                Email = updateParent.Email,
+                Address = updateParent.Address
+            };
         }
 
         public async Task<List<ParentResponse>> SearchParentAsync(SearchParentRequest request)

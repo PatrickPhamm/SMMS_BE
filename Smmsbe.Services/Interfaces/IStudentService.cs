@@ -10,7 +10,7 @@ namespace Smmsbe.Services.Interfaces
         Task<List<StudentResponse>> GetStudentByParent(int parentId);
         Task<Student> AuthorizeAsync(string studentNumber, string password);
         Task<Student> AddStudentAsync(AddStudentRequest request);
-        Task<Student> UpdateStudentAsync(UpdateStudentRequest request);
+        Task<UpdateStudentReponse> UpdateStudentAsync(UpdateStudentRequest request);
         Task<bool> DeleteStudentAsync(int id);
         Task<List<StudentResponse>> SearchStudentAsync(SearchStudentRequest request);
     }
