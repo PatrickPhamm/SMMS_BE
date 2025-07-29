@@ -86,7 +86,7 @@ namespace Smmsbe.Services
 
             updateBlog.Title = request.Title;
             updateBlog.Content = request.Content;
-            updateBlog.DatePosted = request.DatePosted;
+            //updateBlog.DatePosted = request.DatePosted;
             updateBlog.Thumbnail = request.Thumbnail;
 
             await _blogRepository.Update(updateBlog);
@@ -95,7 +95,7 @@ namespace Smmsbe.Services
             {
                 Title = updateBlog.Title,
                 Content = updateBlog.Content,
-                DatePosted = updateBlog.DatePosted,
+                //DatePosted = updateBlog.DatePosted,
                 Thumbnail = GetBlogImageUrl(updateBlog.Thumbnail),
                 Category = ((BlogCategoryType)updateBlog.Category).ToString()
             };

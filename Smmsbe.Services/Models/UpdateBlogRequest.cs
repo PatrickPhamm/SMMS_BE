@@ -11,7 +11,7 @@ namespace Smmsbe.Services.Models
         public int BlogId { get; set; } 
         public string Title { get; set; }
         public string Content { get; set; }
-        public DateOnly? DatePosted { get; set; }
+        //public DateOnly? DatePosted { get; set; }
         public string Thumbnail { get; set; }
     }
 }
