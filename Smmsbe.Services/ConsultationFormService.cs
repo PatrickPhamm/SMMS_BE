@@ -69,6 +69,7 @@ namespace Smmsbe.Services
                     {
                         ConsultationScheduleId = x.ConsultationSchedule.ConsultationScheduleId,
                         NurseId = x.ConsultationSchedule.NurseId,
+                        StudentId = x.ConsultationSchedule.StudentId,
                         Location = x.ConsultationSchedule.Location,
                         ConsultDate = x.ConsultationSchedule.ConsultDate
                     }
