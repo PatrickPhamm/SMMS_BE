@@ -113,6 +113,7 @@ namespace Smmsbe.Services
             // Tạo Form mới
             var newForm = new Form
             {
+                ManagerId = 1,
                 ClassName = request.ClassName,
                 Title = request.Title,
                 Content = request.Content,
